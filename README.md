@@ -2,6 +2,12 @@
 
 Affichage de la température d'un Raspberry dans la zone de notification d'un PC
 
+Voir les articles correspondants sur https://www.mikmer.fr :
+
+[L’œil du PC sur la température d’un Raspberry – Théorie](https://www.mikmer.fr/?p=226)
+
+[L’œil du PC sur la température d’un Raspberry – Installation](https://www.mikmer.fr/?p=246)
+
 ## Pré-requis
 Il faut :
 - installer le script **thermopi** sur le Raspberry et le transformer en **service**
