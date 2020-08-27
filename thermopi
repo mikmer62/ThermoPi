@@ -1,0 +1,69 @@
+#!/bin/bash
+
+##### ThermoPi
+##### Affichage de la température d'un Raspberry dans la zone de notification d'un PC du même réseau local
+##### Display Raspberry temp in the notification area of a PC located on same LAN
+
+##### https://github.com/mikmer62/ThermoPi
+##### https://www.mikmer.fr
+
+##### Le script doit être lancé par le service : télécharger thermopi.service dans /etc/systemd/system
+##### Script is launch by a service  : download thermopi.service in /etc/systemd/system
+
+##### Then systemctl enable thermopi; systemctl start thermopi
+##### Puis systemctl enable thermopi; systemctl start thermopi
+
+SHARED_TEMP=/var/thermopi/ThermoPi.txt
+SHARED_TEMP_HIST=/var/thermopi/ThermoPi-Hist.txt
+
+# Creation du fichier des historiques s'il n'existe pas
+# Create history file if it doesnt exist
+if [ ! -e $SHARED_TEMP_HIST ]
+then
+  touch $SHARED_TEMP_HIST
+  chmod 644 $SHARED_TEMP_HIST
+fi
+
+while true
+do
+  # Le répertoire /var/thermopi doit être partagé avec Samba
+  # /var/thermopi directory must be shared with Samba
+
+  # Température courante
+  # Current temperature
+  TEMP=`cat /sys/class/thermal/thermal_zone0/temp`
+  CURDATE=`date +"%d/%m/%Y"`
+  CURTIME=`date +"%H:%M:%S"`
+  echo `hostname`";"$CURDATE";"$CURTIME";"$TEMP > $SHARED_TEMP
+
+  # Mise à jour TEMP dans le fichier Historiques si dépasse min ou max
+  # Update TEMP in History file if outside min max
+  CURDAYVAL=`grep $CURDATE $SHARED_TEMP_HIST`
+
+  if [ ! -z $CURDAYVAL ]
+  then
+    # Le jour existe dans le fichier historique. Maj min max si necessaire
+    # Day exist in history file. Update min max if necessary
+
+    IFS=$';' read -r CURDAY CURMINTIME CURMIN CURMAXTIME CURMAX <<< $CURDAYVAL
+
+    if [ $TEMP -lt $CURMIN ]
+    then
+      echo "$(sed '$d' $SHARED_TEMP_HIST)" > $SHARED_TEMP_HIST
+      echo $CURDATE";"$CURTIME";"$TEMP";"$CURMAXTIME";"$CURMAX >> $SHARED_TEMP_HIST
+    fi
+
+    if [ $TEMP -gt $CURMAX ]
+    then
+      echo "$(sed '$d' $SHARED_TEMP_HIST)" > $SHARED_TEMP_HIST
+      echo $CURDATE";"$CURMINTIME";"$CURMIN";"$CURTIME";"$TEMP >> $SHARED_TEMP_HIST
+    fi
+  else
+    # Le jour n'existe pas dans le fichier historique. Ajout du jour et conservation des 7 derniers jours
+    # Day doesnt exist in history file. Add day in history file and keep 7 last days
+    echo `date +"%d/%m/%Y;%H:%M:%S"`";"$TEMP";"`date +"%H:%M:%S"`";"$TEMP >> $SHARED_TEMP_HIST
+    echo "$(tail -n 7 $SHARED_TEMP_HIST)" > $SHARED_TEMP_HIST
+  fi
+
+  sleep 1
+done
