@@ -5,6 +5,10 @@ Public Class FrmPrefs
 
   Dim newPrefs As ThermoPI.Preferences
 
+  Private Sub ChkLaunchAtStartup_CheckedChanged(sender As Object, e As EventArgs) Handles ChkLaunchAtStartup.CheckedChanged
+    newPrefs.StartupLaunch = ChkLaunchAtStartup.Checked
+  End Sub
+
   Private Sub RbFlagFr_CheckedChanged(sender As Object, e As EventArgs) Handles RbFlagFr.CheckedChanged
     If RbFlagFr.Checked Then
       newPrefs.Lang = "fr"
@@ -279,6 +283,17 @@ Public Class FrmPrefs
   End Function
 
   Private Sub BtnOK_Click(sender As Object, e As EventArgs) Handles BtnOK.Click
+    Dim regkey As Microsoft.Win32.RegistryKey
+
+    'Démarrage / Startup
+    regkey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("Software\Microsoft\Windows\CurrentVersion\Run", True)
+    If newPrefs.StartupLaunch Then
+      regkey.SetValue(My.Application.Info.AssemblyName, Application.ExecutablePath)
+    Else
+      regkey.DeleteValue(My.Application.Info.AssemblyName)
+    End If
+    SaveSetting("ThermoPi", "Prefs", "StartupLaunch", newPrefs.StartupLaunch.ToString)
+
     'Langue interface / User language
     SaveSetting("ThermoPi", "Prefs", "Lang", newPrefs.Lang)
 
@@ -332,6 +347,9 @@ Public Class FrmPrefs
   Private Sub FrmPrefs_Load(sender As Object, e As EventArgs) Handles Me.Load
     Dim fi As FileInfo
     Dim fonts As Text.InstalledFontCollection
+
+    ChkLaunchAtStartup.Checked = ThermoPI.prefs.StartupLaunch
+    newPrefs.StartupLaunch = ThermoPI.prefs.StartupLaunch
 
     fi = New FileInfo(Application.StartupPath & "\en\ThermoPi.resources.dll")
     If fi.Exists = False Then
@@ -406,5 +424,6 @@ Public Class FrmPrefs
 
     DrawText()
   End Sub
+
 
 End Class

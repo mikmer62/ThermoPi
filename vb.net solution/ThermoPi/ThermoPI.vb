@@ -8,6 +8,7 @@ Public Class ThermoPI
   End Function
 
   Public Structure Preferences
+    Dim StartupLaunch As Boolean
     Dim Lang As String
     Dim DateFormat As String
     Dim RaspSharedDir As String
@@ -41,32 +42,30 @@ Public Class ThermoPI
 
     With prefs
       If .RaspSharedDir <> "" Then
-        fi = New FileInfo(.RaspSharedDir & "\ThermoPi.txt")
-        If fi.Exists Then
-          readOK = False
-          'Lecture température dans fichier partagé par le Raspberry / Get temp in Raspberry shared file
-          While readOK = False
-            Using fs As New FileStream(.RaspSharedDir & "\ThermoPi.txt", FileMode.Open, FileAccess.Read, FileShare.ReadWrite)
-              Using sr As New StreamReader(fs)
-                Try
+        Try
+          fi = New FileInfo(.RaspSharedDir & "\ThermoPi.txt")
+          If fi.Exists Then
+            readOK = False
+            'Lecture température dans fichier partagé par le Raspberry / Get temp in Raspberry shared file
+            While readOK = False
+              Using fs As New FileStream(.RaspSharedDir & "\ThermoPi.txt", FileMode.Open, FileAccess.Read, FileShare.ReadWrite)
+                Using sr As New StreamReader(fs)
                   sensor = sr.ReadLine.Split(";")
                   readOK = True
-                Catch ex As Exception
-                End Try
+                End Using
               End Using
-            End Using
-          End While
-          'Température
-          'Temperature
-          tempInt = CInt(sensor(3).ToString.Substring(0, 2))
-          tempDbl = CDbl(sensor(3).ToString) / 1000
+            End While
+            'Température
+            'Temperature
+            tempInt = CInt(sensor(3).ToString.Substring(0, 2))
+            tempDbl = CDbl(sensor(3).ToString) / 1000
 
-          'Affichage nom du Raspberry + température exacte en tooltip / Display Raspberry name + exact temp in tooltip
-          RaspName = sensor(0)
-          NotifyIcon.Text = sensor(0) & "   " & sensor(2) & "   " & tempDbl.ToString("0.0°")
+            'Affichage nom du Raspberry + température exacte en tooltip / Display Raspberry name + exact temp in tooltip
+            RaspName = sensor(0)
+            NotifyIcon.Text = sensor(0) & "   " & sensor(2) & "   " & tempDbl.ToString("0.0°")
 
-          'Affichage température dans la zone de notification / Display temp in notification area
-          bitmapText = New Bitmap(16, 16)
+            'Affichage température dans la zone de notification / Display temp in notification area
+            bitmapText = New Bitmap(16, 16)
             g = System.Drawing.Graphics.FromImage(bitmapText)
             fontToUse = New Font(.DispFont, .DispFontSize, .DispFontStyle, GraphicsUnit.Pixel)
             If tempInt <= 45 Then
@@ -102,8 +101,10 @@ Public Class ThermoPI
           Else
             'Les fichiers d'échange n'existent pas ou ont été supprimés / Raspberry shared files doesnt exist or have been moved
             NotifyIcon.Text = "Fichiers Raspberry introuvables !"
-          NotifyIcon.Icon = My.Resources.ThermoPi_Icon
-        End If
+            NotifyIcon.Icon = My.Resources.ThermoPi_Icon
+          End If
+        Catch ex As Exception
+        End Try
       Else
         'Le dossier partagé n'existe pas ou a été supprimé / Raspberry shared dir doesnt exist or has been moved
         NotifyIcon.Text = "Dossier partagé introuvable !"
@@ -118,6 +119,9 @@ Public Class ThermoPI
   Public Sub GetPrefs()
     'Récupération des préférences / Load preferences
     With prefs
+      'Démarrage / Startup
+      .StartupLaunch = GetSetting("ThermoPi", "Prefs", "StartupLaunch", "False")
+
       'Langue / Language
       .Lang = GetSetting("ThermoPi", "Prefs", "Lang", Globalization.CultureInfo.CurrentCulture.Parent.ToString)
 
@@ -215,9 +219,16 @@ Public Class ThermoPI
   End Sub
 
   Private Sub ThermoPi_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Dim regkey As Microsoft.Win32.RegistryKey
     Dim fi As FileInfo
 
     Me.Hide()
+
+    If GetSetting("ThermoPi", "Prefs", "StartupLaunch", "") = "" Then
+      regkey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("Software\Microsoft\Windows\CurrentVersion\Run", True)
+      regkey.SetValue(My.Application.Info.AssemblyName, Application.ExecutablePath)
+      SaveSetting("ThermoPi", "Prefs", "StartupLaunch", "True")
+    End If
 
     fi = New FileInfo(Application.StartupPath & "\en\ThermoPi.resources.dll")
     If fi.Exists Then

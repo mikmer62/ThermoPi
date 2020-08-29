@@ -75,6 +75,8 @@ Partial Class FrmPrefs
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.RbFlagFr = New System.Windows.Forms.RadioButton()
         Me.RbFlagEn = New System.Windows.Forms.RadioButton()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.ChkLaunchAtStartup = New System.Windows.Forms.CheckBox()
         CType(Me.NumInterval, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumFontSize, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picDisp1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,12 +92,13 @@ Partial Class FrmPrefs
         Me.GroupBox3.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
         Me.SuspendLayout()
         '
         'NumInterval
         '
-        Me.NumInterval.Cursor = System.Windows.Forms.Cursors.Default
         resources.ApplyResources(Me.NumInterval, "NumInterval")
+        Me.NumInterval.Cursor = System.Windows.Forms.Cursors.Default
         Me.NumInterval.Maximum = New Decimal(New Integer() {60, 0, 0, 0})
         Me.NumInterval.Name = "NumInterval"
         Me.NumInterval.TabStop = False
@@ -112,8 +115,8 @@ Partial Class FrmPrefs
         '
         'BtnOK
         '
-        Me.BtnOK.DialogResult = System.Windows.Forms.DialogResult.OK
         resources.ApplyResources(Me.BtnOK, "BtnOK")
+        Me.BtnOK.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.BtnOK.Name = "BtnOK"
         Me.BtnOK.UseVisualStyleBackColor = True
         '
@@ -189,9 +192,9 @@ Partial Class FrmPrefs
         '
         'CboFonts
         '
+        resources.ApplyResources(Me.CboFonts, "CboFonts")
         Me.CboFonts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CboFonts.FormattingEnabled = True
-        resources.ApplyResources(Me.CboFonts, "CboFonts")
         Me.CboFonts.Name = "CboFonts"
         '
         'Label6
@@ -257,8 +260,8 @@ Partial Class FrmPrefs
         '
         'BtnCancel
         '
-        Me.BtnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
         resources.ApplyResources(Me.BtnCancel, "BtnCancel")
+        Me.BtnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.UseVisualStyleBackColor = True
         '
@@ -270,8 +273,8 @@ Partial Class FrmPrefs
         '
         'lblRaspSharedDir
         '
-        Me.lblRaspSharedDir.BackColor = System.Drawing.SystemColors.Window
         resources.ApplyResources(Me.lblRaspSharedDir, "lblRaspSharedDir")
+        Me.lblRaspSharedDir.BackColor = System.Drawing.SystemColors.Window
         Me.lblRaspSharedDir.Name = "lblRaspSharedDir"
         '
         'BtnBackColor6
@@ -332,6 +335,10 @@ Partial Class FrmPrefs
         Me.BtnDefaultColor.Name = "BtnDefaultColor"
         Me.BtnDefaultColor.UseVisualStyleBackColor = True
         '
+        'FolderBrowserDialog
+        '
+        resources.ApplyResources(Me.FolderBrowserDialog, "FolderBrowserDialog")
+        '
         'Label1
         '
         resources.ApplyResources(Me.Label1, "Label1")
@@ -339,6 +346,7 @@ Partial Class FrmPrefs
         '
         'GroupBox1
         '
+        resources.ApplyResources(Me.GroupBox1, "GroupBox1")
         Me.GroupBox1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.GroupBox1.Controls.Add(Me.CboFonts)
         Me.GroupBox1.Controls.Add(Me.ChkFontBold)
@@ -369,12 +377,12 @@ Partial Class FrmPrefs
         Me.GroupBox1.Controls.Add(Me.picDisp1)
         Me.GroupBox1.Controls.Add(Me.picDisp3)
         Me.GroupBox1.Controls.Add(Me.picDisp2)
-        resources.ApplyResources(Me.GroupBox1, "GroupBox1")
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.TabStop = False
         '
         'GroupBox2
         '
+        resources.ApplyResources(Me.GroupBox2, "GroupBox2")
         Me.GroupBox2.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.GroupBox2.Controls.Add(Me.Label4)
         Me.GroupBox2.Controls.Add(Me.NumInterval)
@@ -383,25 +391,24 @@ Partial Class FrmPrefs
         Me.GroupBox2.Controls.Add(Me.BtnHistFile)
         Me.GroupBox2.Controls.Add(Me.BtnOpenRaspSharedDir)
         Me.GroupBox2.ForeColor = System.Drawing.SystemColors.ControlText
-        resources.ApplyResources(Me.GroupBox2, "GroupBox2")
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.TabStop = False
         '
         'GroupBox3
         '
+        resources.ApplyResources(Me.GroupBox3, "GroupBox3")
         Me.GroupBox3.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.GroupBox3.Controls.Add(Me.Panel2)
         Me.GroupBox3.Controls.Add(Me.Panel1)
-        resources.ApplyResources(Me.GroupBox3, "GroupBox3")
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.TabStop = False
         '
         'Panel2
         '
+        resources.ApplyResources(Me.Panel2, "Panel2")
         Me.Panel2.Controls.Add(Me.Label2)
         Me.Panel2.Controls.Add(Me.RbJMA)
         Me.Panel2.Controls.Add(Me.RbMJA)
-        resources.ApplyResources(Me.Panel2, "Panel2")
         Me.Panel2.Name = "Panel2"
         '
         'Label2
@@ -425,10 +432,10 @@ Partial Class FrmPrefs
         '
         'Panel1
         '
+        resources.ApplyResources(Me.Panel1, "Panel1")
         Me.Panel1.Controls.Add(Me.RbFlagFr)
         Me.Panel1.Controls.Add(Me.RbFlagEn)
         Me.Panel1.Controls.Add(Me.Label1)
-        resources.ApplyResources(Me.Panel1, "Panel1")
         Me.Panel1.Name = "Panel1"
         '
         'RbFlagFr
@@ -447,6 +454,20 @@ Partial Class FrmPrefs
         Me.RbFlagEn.TabStop = True
         Me.RbFlagEn.UseVisualStyleBackColor = True
         '
+        'GroupBox4
+        '
+        resources.ApplyResources(Me.GroupBox4, "GroupBox4")
+        Me.GroupBox4.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        Me.GroupBox4.Controls.Add(Me.ChkLaunchAtStartup)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.TabStop = False
+        '
+        'ChkLaunchAtStartup
+        '
+        resources.ApplyResources(Me.ChkLaunchAtStartup, "ChkLaunchAtStartup")
+        Me.ChkLaunchAtStartup.Name = "ChkLaunchAtStartup"
+        Me.ChkLaunchAtStartup.UseVisualStyleBackColor = True
+        '
         'FrmPrefs
         '
         Me.AcceptButton = Me.BtnOK
@@ -454,6 +475,7 @@ Partial Class FrmPrefs
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.CancelButton = Me.BtnCancel
+        Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
@@ -484,6 +506,8 @@ Partial Class FrmPrefs
         Me.Panel2.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox4.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -539,4 +563,6 @@ Partial Class FrmPrefs
     Friend WithEvents RbJMA As RadioButton
     Friend WithEvents RbMJA As RadioButton
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents GroupBox4 As GroupBox
+    Friend WithEvents ChkLaunchAtStartup As CheckBox
 End Class

@@ -214,6 +214,18 @@
   <data name="Label2.Text" xml:space="preserve">
     <value>Date format</value>
   </data>
+  <data name="GroupBox4.Text" xml:space="preserve">
+    <value>Launch at startup</value>
+  </data>
+  <data name="ChkLaunchAtStartup.Location" type="System.Drawing.Point, System.Drawing">
+    <value>216, 19</value>
+  </data>
+  <data name="ChkLaunchAtStartup.Size" type="System.Drawing.Size, System.Drawing">
+    <value>202, 17</value>
+  </data>
+  <data name="ChkLaunchAtStartup.Text" xml:space="preserve">
+    <value>Launch ThermoPi at Wndows startup</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAMAICAAAAEAIACoEAAANgAAABgYAAABACAAiAkAAN4QAAAQEAAAAQAgAGgEAABmGgAAKAAAACAA
