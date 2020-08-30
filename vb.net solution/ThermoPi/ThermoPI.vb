@@ -104,6 +104,8 @@ Public Class ThermoPI
             NotifyIcon.Icon = My.Resources.ThermoPi_Icon
           End If
         Catch ex As Exception
+          NotifyIcon.Text = "Erreur accès fichiers partagés !"
+          NotifyIcon.Icon = My.Resources.ThermoPi_Icon
         End Try
       Else
         'Le dossier partagé n'existe pas ou a été supprimé / Raspberry shared dir doesnt exist or has been moved
