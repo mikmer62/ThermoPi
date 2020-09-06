@@ -51,9 +51,7 @@ do
     then
       echo "$(sed '$d' $SHARED_TEMP_HIST)" > $SHARED_TEMP_HIST
       echo $CURDATE";"$CURTIME";"$TEMP";"$CURMAXTIME";"$CURMAX >> $SHARED_TEMP_HIST
-    fi
-
-    if [ $TEMP -gt $CURMAX ]
+    elif [ $TEMP -gt $CURMAX ]
     then
       echo "$(sed '$d' $SHARED_TEMP_HIST)" > $SHARED_TEMP_HIST
       echo $CURDATE";"$CURMINTIME";"$CURMIN";"$CURTIME";"$TEMP >> $SHARED_TEMP_HIST
