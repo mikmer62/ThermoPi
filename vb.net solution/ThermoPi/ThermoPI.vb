@@ -26,6 +26,12 @@ Public Class ThermoPI
   Dim workdir As String
   Public RaspName As String
 
+  ' Revision
+  ' Version 1.1.2   2ème correction du bug de l'icone qui disparait après plusieurs jours sans arrêt PC
+  ' Version 1.1.1   Correction infructueuse du bug de l'icone qui disparait après plusieurs jours sans arrêt PC
+  ' Version 1.1     Ajout Option lancement automatique au démarrage de Windows   
+  ' Version 1.0     Premère version
+
 
   '----- Mise à jour de la température / Update temperature
 
@@ -39,6 +45,7 @@ Public Class ThermoPI
     Dim bitmapText As Bitmap
     Dim hIcon As IntPtr
     Dim readOK As Boolean
+    Dim tempIcon As Icon
 
     With prefs
       If .RaspSharedDir <> "" Then
@@ -55,8 +62,7 @@ Public Class ThermoPI
                 End Using
               End Using
             End While
-            'Température
-            'Temperature
+            'Température / Temperature
             tempInt = CInt(sensor(3).ToString.Substring(0, 2))
             tempDbl = CDbl(sensor(3).ToString) / 1000
 
@@ -90,8 +96,11 @@ Public Class ThermoPI
 
             g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit
             g.DrawString(tempInt, fontToUse, brushToUse, .DispOffsetH, .DispOffsetV)
+
             hIcon = bitmapText.GetHicon
-            NotifyIcon.Icon = Icon.FromHandle(hIcon)
+            tempIcon = Icon.FromHandle(hIcon)
+            NotifyIcon.Icon = tempIcon.Clone
+            tempIcon.Dispose()
             DestroyIcon(hIcon)
 
             fontToUse.Dispose()
@@ -217,7 +226,7 @@ Public Class ThermoPI
   End Sub
 
   Private Sub Timer_Tick(sender As Object, e As EventArgs) Handles Timer.Tick
-    getTemp()
+    GetTemp()
   End Sub
 
   Private Sub ThermoPi_Load(sender As Object, e As EventArgs) Handles Me.Load
