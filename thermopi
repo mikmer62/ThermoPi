@@ -15,6 +15,7 @@
 
 SHARED_TEMP=/var/thermopi/ThermoPi.txt
 SHARED_TEMP_HIST=/var/thermopi/ThermoPi-Hist.txt
+HIST_SIZE=30
 
 # Creation du fichier des historiques s'il n'existe pas
 # Create history file if it doesnt exist
@@ -57,10 +58,10 @@ do
       echo $CURDATE";"$CURMINTIME";"$CURMIN";"$CURTIME";"$TEMP >> $SHARED_TEMP_HIST
     fi
   else
-    # Le jour n'existe pas dans le fichier historique. Ajout du jour et conservation des 7 derniers jours
-    # Day doesnt exist in history file. Add day in history file and keep 7 last days
+    # Le jour n'existe pas dans le fichier historique. Ajout du jour et conservation des ($HIST_SIZE) derniers jours
+    # Day doesnt exist in history file. Add day in history file and keep ($HIST_SIZE) last days
     echo `date +"%d/%m/%Y;%H:%M:%S"`";"$TEMP";"`date +"%H:%M:%S"`";"$TEMP >> $SHARED_TEMP_HIST
-    echo "$(tail -n 7 $SHARED_TEMP_HIST)" > $SHARED_TEMP_HIST
+    echo "$(tail -n $HIST_SIZE $SHARED_TEMP_HIST)" > $SHARED_TEMP_HIST
   fi
 
   sleep 1
