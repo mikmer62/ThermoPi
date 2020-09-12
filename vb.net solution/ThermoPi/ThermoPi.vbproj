@@ -121,6 +121,7 @@
     <Compile Include="FrmHist.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="modLVSort.vb" />
     <Compile Include="ThermoPI.vb">
       <SubType>Form</SubType>
     </Compile>

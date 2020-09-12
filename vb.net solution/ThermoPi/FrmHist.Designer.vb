@@ -31,17 +31,17 @@ Partial Class FrmHist
         '
         'BtnOK
         '
-        Me.BtnOK.DialogResult = System.Windows.Forms.DialogResult.OK
         resources.ApplyResources(Me.BtnOK, "BtnOK")
+        Me.BtnOK.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.BtnOK.Name = "BtnOK"
         Me.BtnOK.UseVisualStyleBackColor = True
         '
         'LvHist
         '
+        resources.ApplyResources(Me.LvHist, "LvHist")
         Me.LvHist.FullRowSelect = True
         Me.LvHist.GridLines = True
         Me.LvHist.HideSelection = False
-        resources.ApplyResources(Me.LvHist, "LvHist")
         Me.LvHist.MultiSelect = False
         Me.LvHist.Name = "LvHist"
         Me.LvHist.UseCompatibleStateImageBehavior = False

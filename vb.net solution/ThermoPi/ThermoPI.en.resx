@@ -119,40 +119,40 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="MnuAbout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
+    <value>162, 22</value>
   </data>
   <data name="MnuAbout.Text" xml:space="preserve">
     <value>About ThermoPi</value>
   </data>
   <data name="ToolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 6</value>
+    <value>159, 6</value>
   </data>
   <data name="MnuHist.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
+    <value>162, 22</value>
   </data>
   <data name="MnuHist.Text" xml:space="preserve">
-    <value>7 days history</value>
+    <value>History</value>
   </data>
   <data name="ToolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 6</value>
+    <value>159, 6</value>
   </data>
   <data name="MnuPrefs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
+    <value>162, 22</value>
   </data>
   <data name="MnuPrefs.Text" xml:space="preserve">
     <value>Settings</value>
   </data>
   <data name="ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 6</value>
+    <value>159, 6</value>
   </data>
   <data name="MnuQuit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
+    <value>162, 22</value>
   </data>
   <data name="MnuQuit.Text" xml:space="preserve">
     <value>Quit</value>
   </data>
   <data name="NotifyMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 110</value>
+    <value>163, 110</value>
   </data>
   <data name="Label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 13</value>

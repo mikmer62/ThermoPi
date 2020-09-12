@@ -23,10 +23,11 @@ Public Class ThermoPI
 
   Public prefs As Preferences
   Dim sensor() As String
-  Dim workdir As String
   Public RaspName As String
 
   ' Revision
+  ' Version 1.2     Ajout tri par colonne dans écran Historique
+  '                 Script Raspberry thermopi modifié paour paramétrer la taille de l'historique (HIST_SIZE)
   ' Version 1.1.2   2ème correction du bug de l'icone qui disparait après plusieurs jours sans arrêt PC
   ' Version 1.1.1   Correction infructueuse du bug de l'icone qui disparait après plusieurs jours sans arrêt PC
   ' Version 1.1     Ajout Option lancement automatique au démarrage de Windows   

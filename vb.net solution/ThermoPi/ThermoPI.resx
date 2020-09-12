@@ -125,40 +125,40 @@
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="MnuAbout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>193, 22</value>
   </data>
   <data name="MnuAbout.Text" xml:space="preserve">
     <value>A propos de ThermoPi</value>
   </data>
   <data name="ToolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 6</value>
+    <value>190, 6</value>
   </data>
   <data name="MnuHist.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>193, 22</value>
   </data>
   <data name="MnuHist.Text" xml:space="preserve">
-    <value>Historique sur 7 jours</value>
+    <value>Historique</value>
   </data>
   <data name="ToolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 6</value>
+    <value>190, 6</value>
   </data>
   <data name="MnuPrefs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>193, 22</value>
   </data>
   <data name="MnuPrefs.Text" xml:space="preserve">
     <value>Préférences</value>
   </data>
   <data name="ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 6</value>
+    <value>190, 6</value>
   </data>
   <data name="MnuQuit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>193, 22</value>
   </data>
   <data name="MnuQuit.Text" xml:space="preserve">
     <value>Quitter</value>
   </data>
   <data name="NotifyMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 110</value>
+    <value>194, 132</value>
   </data>
   <data name="&gt;&gt;NotifyMenuStrip.Name" xml:space="preserve">
     <value>NotifyMenuStrip</value>
@@ -205,9 +205,6 @@
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>fr</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
